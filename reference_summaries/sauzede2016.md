@@ -8,12 +8,14 @@
 
 ## Abstract
 **SOCA-BBP**: Satellite Ocean-Color merged with Argo data to infer the vertical distribution of the Particulate Backscattering coefficient
-- neural netowrk-based method
+- neural network-based method
+- main objective: merge satellite and float data without using vertical bio-optical float profiles
 - three inputs:
-        - satellite data: $b_{bp}$ and *chlor-a* surface estimates
+        - satellite data: $b_{bp}$ and chlorophyll *a* (*chlor-a*) surface estimates
         - float data: temperature-salinity profiles at various depths
         - date: to match satellite and float data
 
+<img src='summary_figures/sauzede_fig4.png' width='600'>
 
 ## Introduction
 **Particulate Organic Carbon (POC)**
@@ -38,7 +40,7 @@
 **Surface to depth**
 - vertical distribution of POC is highly variable in time and space
     - satellites estimates—restricted to the ocean surface—are insufficient to measure carbon production and export
-    - therefore extending surface b_bp  measurements (POC proxy) to below-surface b_bp  estimates is complex
+    - therefore extending surface $b_{bp}$ measurements (POC proxy) to below-surface $b_{bp}$  estimates is complex
     - must combine satellite information with nutrient availability, light regime, and other physical properties of the water column
         - accomplished by over 3800 Argo floats that measure upper 2000m of the ocean
 
@@ -63,7 +65,44 @@
 
 **Matching float profile data to satellite ocean color data**
 - satellite $b_{bp}$ data estimated for wavelength of 700 nm
-- each Argo profile was matched with the satellite data of surface $b_{bp}(700)$ and chlorophyll *a* concentration (Chl) **using the closest pixel from the standard level 3 eight day MODIS-Aqua composites with a 9 km resolution**
+- each Argo profile was matched with the satellite data of surface $b_{bp}$ and chlorophyll *a* concentration (Chl) **using the closest pixel from the standard level 3 eight day MODIS-Aqua composites with a 9 km resolution**
     - source: http://oceancolor.gsfc.nasa.gov
+- vertical profiles are normalized according to estimates of the depth of the "productive layer"
+    - depth estimates are derived from the depths of the mixed layer (in mixed conditions) or the euphotic layer (in stratified conditions)
+    - normalization enables all profiles to be merged regardless of vertical shape while preserving variability
+
+## SOCA-BBP Algorithm Development
+**Multi-Layer Perceptron (MLP)**
+- three inputs
+    - temporal component: day of year; normalized in radians $\text{Day}_\text{rad} = \frac{\text{Day}\cdot\pi}{182.625}$ so day 1 is close to day 365
+    - surface component: satellite-derived log-transformed $b_{bp}$ and *chlor-a*
+    - vertical components: nornalization depth, mixed layer depth, four density values along vertical profile (chosen through PCA)
+- first hidden layer: eight neurons
+- second hidden layer: six neurons
+- loss function: quadratic difference between prediction and target values
+- output
+    - a vector of 10 normalized values of $b_{bp}$ at 10 depths
+    - depths taken at regular intervals within the 0-1.3 normalized layer (called "dimensionless depths")
+    - sigmoid activation
+- inputs and outputs $x$ centered and "decentered" using $x_{ij} = \frac{2}{3} \cdot \frac{x_{ij} - \text{mean}(x_i)}{\sigma(x_i)}$ at respective dimensionless depths
+
+**Model evaluation**
+- $\text{R}^2$ coefficient and slope of linear regression between predictions and targets
+- estimated model error: Median Absolute Percent Difference (MAPD) = median $\left( \frac{|b_{bp\_SOCA} - b_{bp\_Floats}|}{b_{bp\_Floats}} \right) \cdot 100$
+- evaluate sensitivity of model to uncertainties in origin of satellite data
+
+## Results and Discussion
+**Results**
+- SOCA-BBP predicts $b_{bp}$ without systemic bias (global error of retrieval of 21%)
+- no bias according to vertical dimension from dimensionless depth of estimation
+    - results from deepest layer 1-1.3 of dimensionless depth deteriorate slightly because $b_{bp}$ values are in a lower range
+
+<img src='summary_figures/sauzede_fig5.png' width='600'>
+
+**Sensitivity to satellite input data**
+- replaced MODIS-Aqua data with VIIRIS-derived data for additional validation
+- still performed well, showing SOCA_BBP is robust to reasonable noise
+
+<img src='summary_figures/sauzede_fig7.png' width='600'>
 
 
