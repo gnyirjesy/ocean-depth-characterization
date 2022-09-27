@@ -20,8 +20,15 @@
 			- Stratified conditions so flux of nutrients from below and thickness of mixed layer allows phytoplankton growth
 		- **Light**
 			- Surface irradiance and thickness of mixed layer and phytoplankton content control flux of photons to depth favorable to phytoplankton growth
+			- require minimum light level in mixed layer
 	- Characterize DCM as majority increase in phytoplankton or increase in photoacclimation
 		- Use combination of chlorophyll a concentration ([Chla]) and particulate organic carbon concentrations (POC)
+	- Presence of DCM has a strong latitudinal and seasonal dependence
+		- similar gradient exists in water-column stability; water can remain stratifies to encorage DCM drivers
+		- DCMs are permanent and frequent at low latitudes
+		- DCMs are sparse and only in the end of spring-summer growth at higher latitudes
+
+	
 
 - BGC-Argo floats
 	- measurements:
@@ -48,5 +55,37 @@
 - K-means Clustering
 	- Group by mean DCM depth, mean [Chla] at DCM depth, annual occurrence of DCM profiles, annual occurrence of DBM profiles
     - test k=2-10
+	- Another group on intensity, depth, and typology to define 4 zones with a latitudinal pattern (high latitudes in both hemispheres and low-latitude areas)
+
+
+**Findings:**
+- Four regional zones:
+	- Shallow maxima zone (SHAZ)
+		- high-latitude regions in northern hemisphere
+		- DCM growth only in summer months, still sparse during that season
+		- intense (2.4 mg chla $m^{-3}$) DCMs
+		- shallow (37m)
+		- DCMs with high biomass 
+		- nitrate limited growth
+	- ghost zone (CHOZ)
+		- four sub-regions of southern ocean and north atlantic current
+		- DCM growth restricted to summer months and are sparse
+		- deeper (64m) and less intense (1.4 mg chla $m^{-3}$) than DCMs in SHAZ
+		- iron limited growth
+	- deep photoacclimation zone (DAZ)
+		- DCMs are permanent features
+		- permanently stratified conditions
+		- low and middle latitudes
+		- deep, weak, and photoacclimated DCMS
+		- favorable conditions for DCM growth at great depths with low light availability
+		- high proportion of DAM profiles
+		- growth driven by nutrient inputs from layers below
+	- deep biomass zone (DBZ)
+		- DCMs are permanent features
+		- permanently stratified conditions
+		- low and middle latitudes
+		- stronger and shallower maxima features than DAZ
+		- optimal light and nutrients from DCM growth
+
 
 
