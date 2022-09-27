@@ -1,16 +1,18 @@
 # Sauzède2016 summary
 
-**A neural network-based method for merging ocean color and Argo data to extend surface bio-optical properties to depth: Retrieval of the particulate backscattering coefficient**
+\**A neural network-based method for merging ocean color and Argo data to extend surface bio-optical properties to depth: Retrieval of the particulate backscattering coefficient**
 
 Link to paper on team Google Drive: https://drive.google.com/file/d/1ic7Udf3idYpEBBoWs6mkBo2om3a9dEr7/view?usp=sharing
 
 *Note: the database, float details, and prodecures specific to this 2016 paper may or may not align with the data and details we are concerned with for this project in 2022.*
+
 
 ## Goal
 *"Develop and examine the potential of a new global method for merging satellite ocean color and physical Argo data to infer the vertical distribution of $b_{bp}$ with a relatively high spatiotemporal resolution, i.e., the resolution of Argo-to-satellite matchup data"*
 
 
 ## Abstract
+**SOCA-BBP**: Satellite Ocean-Color merged with Argo data to infer the vertical distribution of the Particulate Backscattering coefficient
 - neural network-based method (multi-layer perceptron)
 - main objective: merge satellite and float data without using vertical bio-optical float profiles
 - three inputs:
@@ -19,6 +21,7 @@ Link to paper on team Google Drive: https://drive.google.com/file/d/1ic7Udf3idYp
         - date: to match satellite and float data
 
 <img src='summary_figures/sauzede_fig4.png' width='600'>
+
 
 ## Introduction
 **Particulate Organic Carbon (POC)**
