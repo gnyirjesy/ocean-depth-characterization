@@ -1,5 +1,9 @@
 # Sauzède2016 summary
 
+**A neural network-based method for merging ocean color and Argo data to extend surface bio-optical properties to depth: Retrieval of the particulate backscattering coefficient**
+
+Link to paper on team Google Drive: https://drive.google.com/file/d/1ic7Udf3idYpEBBoWs6mkBo2om3a9dEr7/view?usp=sharing
+
 *Note: the database, float details, and prodecures specific to this 2016 paper may or may not align with the data and details we are concerned with for this project in 2022.*
 
 ## Goal
@@ -7,8 +11,7 @@
 
 
 ## Abstract
-**SOCA-BBP**: Satellite Ocean-Color merged with Argo data to infer the vertical distribution of the Particulate Backscattering coefficient
-- neural network-based method
+- neural network-based method (multi-layer perceptron)
 - main objective: merge satellite and float data without using vertical bio-optical float profiles
 - three inputs:
         - satellite data: $b_{bp}$ and chlorophyll *a* (*chlor-a*) surface estimates
@@ -103,6 +106,28 @@
 - replaced MODIS-Aqua data with VIIRIS-derived data for additional validation
 - still performed well, showing SOCA_BBP is robust to reasonable noise
 
-<img src='summary_figures/sauzede_fig7.png' width='600'>
+<img src='summary_figures/sauzede_fig7.png' width='300'>
 
+**Additional validation and observations**
+- model predictions are consistent with float data when other depths are estimated through linear interpolation of values in 10-dimensional output
+- model underestimates $b_{bp}$ in the Mediterranean Sea, especially from July to October
+- comparing depth-integrated estimations of $b_{bp}$ smooths estimation errors from noise in float data
+- in addition to float data not seen in training, the model generalizes well to validation data collected from an additional source: Atlantic Meridonial Transect (AMT) cruise
 
+<img src='summary_figures/sauzede_fig9.png' width='600'>
+
+**Application: global 3-D climatologies of $b_{bp}$**
+- paper discusses under/overestimation of $b_{bp}$ in certain ocean basins, biases from estimation or measurement methods, and seasonality
+    - it may be valueable to revisit this section, but some observations and arguments may be outdated
+- use results to create a depth-resolved global proxy of POC and phytoplankton carbon with high space-time resolution
+- model outputs and conclusion have the potential to sreve as benchmarks for temporal or regional trends
+
+## Conclusion
+- SOCA-BBP is a successful method for large-scale perspective and climatology product development
+    - at the time of this paper, it was not yet developed vertical $b_{bp}$ distribution for specific location/satellite-float matchup at a given time
+- uncertainties in satellite bio-optical data may generate uncertainty in $b_{bp}$ distribution retrieval
+    - however, success of the model across both MODIS-Aqua and VIIRIS data indicates that the model accounts for reasonable noise during training
+- results may be extended to analyze phytoplankton biomass or *chlor-a* concentration
+    - the latter may be more valuable, as studies have shown that the cellular Chl-to-carbon ratio may impact *chlor-a* concentrations more than phytoplankton biomass itself over large oceanic regions
+    - this is a prerequisite to improving the characterization of the distribution and variability in carbon export
+- this study may be extended beyond to $b_{bp}$ to other features such as chorophyll *a* concetration and CDOM
