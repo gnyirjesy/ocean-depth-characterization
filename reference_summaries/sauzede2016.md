@@ -1,6 +1,6 @@
 # Sauzède2016 summary
 
-\**A neural network-based method for merging ocean color and Argo data to extend surface bio-optical properties to depth: Retrieval of the particulate backscattering coefficient**
+**A neural network-based method for merging ocean color and Argo data to extend surface bio-optical properties to depth: Retrieval of the particulate backscattering coefficient**
 
 Link to paper on team Google Drive: https://drive.google.com/file/d/1ic7Udf3idYpEBBoWs6mkBo2om3a9dEr7/view?usp=sharing
 
@@ -77,6 +77,7 @@ Link to paper on team Google Drive: https://drive.google.com/file/d/1ic7Udf3idYp
     - depth estimates are derived from the depths of the mixed layer (in mixed conditions) or the euphotic layer (in stratified conditions)
     - normalization enables all profiles to be merged regardless of vertical shape while preserving variability
 
+
 ## SOCA-BBP Algorithm Development
 **Multi-Layer Perceptron (MLP)**
 - three inputs
@@ -96,6 +97,7 @@ Link to paper on team Google Drive: https://drive.google.com/file/d/1ic7Udf3idYp
 - $\text{R}^2$ coefficient and slope of linear regression between predictions and targets
 - estimated model error: Median Absolute Percent Difference (MAPD) = median $\left( \frac{|b_{bp\_SOCA} - b_{bp\_Floats}|}{b_{bp\_Floats}} \right) \cdot 100$
 - evaluate sensitivity of model to uncertainties in origin of satellite data
+
 
 ## Results and Discussion
 **Results**
@@ -124,6 +126,7 @@ Link to paper on team Google Drive: https://drive.google.com/file/d/1ic7Udf3idYp
     - it may be valueable to revisit this section, but some observations and arguments may be outdated
 - use results to create a depth-resolved global proxy of POC and phytoplankton carbon with high space-time resolution
 - model outputs and conclusion have the potential to sreve as benchmarks for temporal or regional trends
+
 
 ## Conclusion
 - SOCA-BBP is a successful method for large-scale perspective and climatology product development
