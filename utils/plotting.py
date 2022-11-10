@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import geopandas as gpd
+import numpy as np
 
 def plot_on_map(df, source, features=None, data_type=None, figsize=(10,4), subtitle=None):
     '''
