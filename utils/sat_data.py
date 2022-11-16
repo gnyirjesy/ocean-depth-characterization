@@ -7,6 +7,7 @@ import os
 from os.path import exists
 import bisect
 import calendar
+import argparse
 
 
 def get_filename(lookup_date, date_values, var_oceandata, period):
@@ -44,6 +45,7 @@ def get_filename(lookup_date, date_values, var_oceandata, period):
         filename = "AQUA_MODIS."+str(lookup_date.year) + '{0:02d}'.format(lookup_date.month) + '{0:02d}'.format(1) \
             + "_" + str(lookup_date.year) + '{0:02d}'.format(lookup_date.month) \
                 + '{0:02d}'.format(calendar.monthrange(lookup_date.year, lookup_date.month)[1])+".L3m.MO."+var_oceandata+".4km.nc"
+    print('filename success')
     return(filename)
 
 def lookup_sat_value(latitude, longitude, filename, var_oceandata):
@@ -139,3 +141,35 @@ def day_8d_month_impute(latitude, longitude, lookup_date, var_oceandata, date_va
         if np.isnan(sat_val):
             sat_val = get_sat_val(latitude, longitude, lookup_date, var_oceandata, 'month', date_values, appkey_val)
     return(sat_val)
+
+if __name__ == 'main':
+    parser = argparse.ArgumentParser(description='Pull satellite date for given latitude, longitude, date')
+    parser.add_argument('latitude',type=float, help='latitude of interest')
+    parser.add_argument('longitude',type=float, help='longitude of interest')
+    parser.add_argument('year', type=int, help='year of interest')
+    parser.add_argument('month', type=int, help='month of interest')
+    parser.add_argument('day', type=int, help='day of interest')
+    parser.add_argument('OceanDataVariable', type=str, help='variable of interest, options include CHL.chlor_a, FLH.ipar, etc.')
+    parser.add_argument('appkey_val',type = str, help='NASA EarthData appkey')
+    args = parser.parse_args()
+    latitude = args.latitude
+    longitude = args.longitude
+    year = args.year
+    month = args.month
+    day = args.day
+    lookup_date = datetime(year, month, day)
+    oceandata_var = args.OceanDataVariable
+    appkey_val = args.appkey_val
+    date_values = []
+    for i in range(2010,2023):
+        # if i == 2010:  
+        #     date_values_new = pd.date_range(start = datetime(i,1,2), end = datetime(i,12,31), freq='8D')
+        # else:
+        date_values_new = pd.date_range(start = datetime(i,1,1), end = datetime(i,12,31), freq='8D')
+        date_values.extend(date_values_new)
+    #Sort so the bisect works when used later
+    date_values.sort()
+    # print(get_filename(lookup_date, date_values, oceandata_var, 'day'))
+    results = day_8d_month_impute(latitude, longitude, lookup_date, oceandata_var, date_values, appkey_val)
+    print(results)
+    # results.to_csv('./results.csv')
