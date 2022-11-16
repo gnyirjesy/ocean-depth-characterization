@@ -171,5 +171,5 @@ if __name__ == '__main__':
     date_values.sort()
     # print(get_filename(lookup_date, date_values, oceandata_var, 'day'))
     results = day_8d_month_impute(latitude, longitude, lookup_date, oceandata_var, date_values, appkey_val)
-    print(">>>",results)
+    print(results)
     # results.to_csv('./results.csv')
