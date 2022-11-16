@@ -45,7 +45,6 @@ def get_filename(lookup_date, date_values, var_oceandata, period):
         filename = "AQUA_MODIS."+str(lookup_date.year) + '{0:02d}'.format(lookup_date.month) + '{0:02d}'.format(1) \
             + "_" + str(lookup_date.year) + '{0:02d}'.format(lookup_date.month) \
                 + '{0:02d}'.format(calendar.monthrange(lookup_date.year, lookup_date.month)[1])+".L3m.MO."+var_oceandata+".4km.nc"
-    print('filename success')
     return(filename)
 
 def lookup_sat_value(latitude, longitude, filename, var_oceandata):
@@ -142,7 +141,8 @@ def day_8d_month_impute(latitude, longitude, lookup_date, var_oceandata, date_va
             sat_val = get_sat_val(latitude, longitude, lookup_date, var_oceandata, 'month', date_values, appkey_val)
     return(sat_val)
 
-if __name__ == 'main':
+if __name__ == '__main__':
+    print('this is working')
     parser = argparse.ArgumentParser(description='Pull satellite date for given latitude, longitude, date')
     parser.add_argument('latitude',type=float, help='latitude of interest')
     parser.add_argument('longitude',type=float, help='longitude of interest')
@@ -171,5 +171,5 @@ if __name__ == 'main':
     date_values.sort()
     # print(get_filename(lookup_date, date_values, oceandata_var, 'day'))
     results = day_8d_month_impute(latitude, longitude, lookup_date, oceandata_var, date_values, appkey_val)
-    print(results)
+    print(">>>",results)
     # results.to_csv('./results.csv')
