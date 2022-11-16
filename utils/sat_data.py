@@ -1,4 +1,46 @@
-# Functions to assist with satellite data query and processing
+
+"""
+Functions to assist with satellite data query and processing
+Use a virtual environment to run this code if running alone. From your computer command line enter the following commands:
+1. conda create -n oceandata_pull python==3.10.6 numpy==1.23.3 pandas==1.5.0 xarray==2022.9.0 requests==2.28.1
+2. conda activate oceandata_pull
+3. conda install -c conda-forge netcdf4
+Now you have a virtual environment that will work with this script. You can pull the CHL data for a location 
+at latitude 40, longitude -60, date 2/4/2022 usine the following command line code by substiting the appkey_val
+with your NASA Earthdata app_key:
+
+python sat_data.py 40 -60 2022 2 4 'CHL.chlor_a' "appkey_val"
+
+
+An appkey can be obtained from:
+#    https://oceandata.sci.gsfc.nasa.gov/appkey/
+
+Variables that can be pulled are listed below:
+CHL.chlor_a: Chlorophyll Concentration, OCI Algorithm
+FLH.ipar: Instantaneous Photosynthetically Available Radiation
+POC.poc: Particulate Organic Carbon, D. Stramski, 2007 (443/555 version)
+PIC.pic: Calcite Concentration, Balch and Gordon
+KD.Kd_490: Diffuse attenuation coefficient at 490 nm, KD2 algorithm
+IOP.bbp_443: Particulate backscattering at 443 nm, GIOP model
+IOP.a_678: Total absorption at 678 nm, GIOP model
+SST.sst: Sea Surface Temperature
+FLH.nflh: Normalized Fluorescence Line Height
+RRS.Rrs_678: Remote sensing reflectance at 678 nm
+IOP.adg_443: Absorption due to gelbstoff and detrital material at 443nm, GIOP model
+IOP.adg_s: Detrital and gelbstoff absorption spectral parameter for GIOP model
+IOP.adg_unc_443: Uncertainty in absorption due to gelbstoff and detrital material at 443 nm, GIOP model
+IOP.aph_443: Absorption due to phytoplankton at 443 nm, GIOP model
+IOP.aph_unc_443: Uncertainty in absorption due to phytoplankton at 443 nm, GIOP model
+IOP.bbp_s: Backscattering spectral parameter for GIOP model
+IOP.bbp_unc_443: Uncertainty in particulate backscattering at 443 nm, GIOP model
+IOP.bb_678: Total backscattering at 678 nm, GIOP model
+SST4.sst4: 4um Sea Surface Temperature
+PAR.par: Photosynthetically Available Radiation, R. Frouin
+RRS.angstrom: Aerosol Angstrom exponent, 443 to 865 nm
+RRS.aot_869: Aerosol optical thickness at 869 nm
+"""
+
+
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
@@ -142,7 +184,6 @@ def day_8d_month_impute(latitude, longitude, lookup_date, var_oceandata, date_va
     return(sat_val)
 
 if __name__ == '__main__':
-    print('this is working')
     parser = argparse.ArgumentParser(description='Pull satellite date for given latitude, longitude, date')
     parser.add_argument('latitude',type=float, help='latitude of interest')
     parser.add_argument('longitude',type=float, help='longitude of interest')
@@ -162,9 +203,6 @@ if __name__ == '__main__':
     appkey_val = args.appkey_val
     date_values = []
     for i in range(2010,2023):
-        # if i == 2010:  
-        #     date_values_new = pd.date_range(start = datetime(i,1,2), end = datetime(i,12,31), freq='8D')
-        # else:
         date_values_new = pd.date_range(start = datetime(i,1,1), end = datetime(i,12,31), freq='8D')
         date_values.extend(date_values_new)
     #Sort so the bisect works when used later
