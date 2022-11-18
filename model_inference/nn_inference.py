@@ -63,11 +63,13 @@ class ChlaPredictor():
 
     def make_inference(self, input_features):
         '''
-        model prediction
+        makes an inference given a set of input features
 
-        interpolation of results
-
-        kmeans prediction and mixing
+        inputs:
+        input_features (type: numpy array) --
+        trained on ['latitude', 'longitude', 'date_doy_rad',
+        'sat_chl_month', 'sat_sst_month', 'sat_pic_month',
+        'sat_aph_443_month']
         '''
         # make input have dimensions for model
         try:
@@ -82,7 +84,9 @@ class ChlaPredictor():
         return final_predictions
     
     def interpolate(self, predictions):
-        
+        '''
+        interpolates raw results to be mixed with kmeans
+        '''
         n_points = 25
         # interpolate results
         xold = np.linspace(0, 1, 4)
@@ -95,6 +99,10 @@ class ChlaPredictor():
         return int_preds_df
     
     def create_mixture(self, int_preds, mixture=0.2):
+        '''
+        creates mixture of kmeans and interpolated predictions
+        to return final predictions
+        '''
         n_points = 25
 
         kmeans_preds = self.kmeans.predict(int_preds.to_numpy())
