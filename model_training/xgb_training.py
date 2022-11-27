@@ -10,7 +10,7 @@ import pickle
 from xgboost import XGBRegressor
 from sklearn.preprocessing import StandardScaler
 
-FINAL_NORM_SET_PATH = 'C:/Users/johnc/Documents/Python Scripts/ocean-depth-characterization/data/final_norm_set_10.csv'
+FINAL_NORM_SET_PATH = 'C:/Users/johnc/Documents/Python Scripts/ocean-depth-characterization/data/final_norm_set_11.csv'
 OUTPUT_PATH = 'C:/Users/johnc/Documents/Python Scripts/ocean-depth-characterization/model_files/'
 
 def main():
@@ -20,7 +20,7 @@ def main():
     
     # gather features and labels
     feature_cols = ['latitude', 'longitude', 'date_doy_rad', 'sat_chl_month', 'sat_sst_month', 'sat_pic_month', 'sat_aph_443_month']
-    label_bins = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    label_bins = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     label_cols = ['norm_' + str(i) for i in label_bins]
     X_train = df[feature_cols]
     Y_train = df[label_cols]
