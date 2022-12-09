@@ -1,0 +1,37 @@
+{
+  "name": "web-ocean-app",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@expo/webpack-config": "^0.17.2",
+    "axios": "^1.2.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "expo": "~47.0.7",
+    "expo-status-bar": "~1.4.2",
+    "json-loader": "^0.5.7",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-native": "0.70.5",
+    "react-native-dropdown-picker": "^5.4.3",
+    "react-native-maps": "1.3.2",
+    "react-native-web": "~0.18.9",
+    "react-native-webpack": "^0.1.1",
+    "react-navigation": "^4.4.4",
+    "react-navigation-stack": "^2.10.4",
+    "react-use-downloader": "^1.2.1",
+    "victory-native": "^36.6.8",
+    "webpack": "^4.43.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "private": true
+}
