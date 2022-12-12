@@ -9,15 +9,17 @@ from sklearn.cluster import KMeans
 from scipy.interpolate import interp1d
 import warnings
 import matplotlib.pyplot as plt
+import os
+
 
 import warnings
 warnings.filterwarnings('ignore')
 
-# set model path
-XGB_MODEL_PATH = 'C:/Users/johnc/Documents/Python Scripts/ocean-depth-characterization/model_files/xgb_11.model'
-NN_MODEL_PATH = 'C:/Users/johnc/Documents/Python Scripts/ocean-depth-characterization/model_files/nn_1281283'
-SCALER_PATH = 'C:/Users/johnc/Documents/Python Scripts/ocean-depth-characterization/model_files/ss_11.pkl'
-KNN_PATH = 'C:/Users/johnc/Documents/Python Scripts/ocean-depth-characterization/model_files/knearestneighbors_cluster_classification_simple.pkl'
+ABS_PATH = os.getcwd()
+XGB_MODEL_PATH = ABS_PATH + '/model_files/xgb_11.model'
+NN_MODEL_PATH = ABS_PATH + '/model_files/nn_1281283'
+SCALER_PATH = ABS_PATH + '/model_files/ss_11.pkl'
+KNN_PATH = ABS_PATH + '/model_files/knearestneighbors_cluster_classification_simple.pkl'
 
 class ChlaPredictor():
 
