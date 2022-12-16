@@ -2,7 +2,7 @@
 
 Data Science Capstone Project focused on extending satellite observations to ocean depths with machine learning
 
-# Collaborators
+## Collaborators
 
 **Mentor**: Nicholas Bock
 **Instructor**: Vivian Zhang
