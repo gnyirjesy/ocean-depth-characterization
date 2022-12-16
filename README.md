@@ -53,3 +53,7 @@ input data. PC USERS: CHANGE MODEL PATHS FROM ‘/’ to
 └── web_application: client and server code for web application
 
 ```
+
+## Product
+
+Link to web application: https://ocean-app-21dd87.netlify.app/
