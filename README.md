@@ -40,12 +40,12 @@ Our model achieves a test R2 value of 0.66, demonstrating that satellite-derived
     │--- inference.py: Contains inference class used to create predictions on
 input data. PC USERS: CHANGE MODEL PATHS FROM ‘/’ to
 ├── model_training: script to train the model
-    |---singxgb_nn_training.py: Trains the model on the train set
+    |--- singxgb_nn_training.py: Trains the model on the train set
     (final_norm_set_11.csv)
 ├── normalization_and_clustering: notebooks for data pre-processing
-├── knn.py: script to train the K-nearest neighbor model
-├── normalization.py: script to estimate euphotic zone depth and express observations in terms of normalized depth
-├── data_creation.ipynb: Train-test set creation from available dataset
+    |--- knn.py: script to train the K-nearest neighbor model
+    |--- normalization.py: script to estimate euphotic zone depth and express observations in terms of normalized depth
+    |--- data_creation.ipynb: Train-test set creation from available dataset
 ├── preliminary_models: model drafts and exploration
 ├── reference_summaries: literature review
 ├── utils: useful functions for data querying and pre-processing
