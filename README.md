@@ -49,3 +49,5 @@ The codebase is structured as follows:
 └── web_application: product UI code
 ```
 
+## Product
+https://ocean-app-21dd87.netlify.app/
